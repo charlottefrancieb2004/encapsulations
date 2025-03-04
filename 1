@@ -1,13 +1,27 @@
-class MyClass:
-    def __init__(self, value):
-        self.__value = value  # Private attribute
-    def __show_value(self):  # Private method
-        print(self.__value)
-    def public_method(self):  # Public method
-        self.__show_value()  # Accessing private method within the class
+class Employee:
+    def __init__(self, name, salary):
+        self.name = name  # Public Member
+        self.__salary = salary  # Private Member
 
-# Usage
-obj = MyClass(10)
-# obj.__show_value()  # This would raise an AttributeError
-# print(obj.__value)  # This would raise an AttributeError
-obj.public_method()  # Accesses private method through a public method
+    def get_salary(self):
+        """Public method to access private salary."""
+        return self.__salary
+
+    def set_salary(self, new_salary):
+        """Public method to update private salary."""
+        if new_salary > 0:
+            self.__salary = new_salary
+        else:
+            print("Invalid salary amount!")
+
+# Execution
+emp = Employee("Alice", 5000)
+print(emp.name)  # Accessible
+print(emp.get_salary())  # Accessing private data via method
+
+# Trying to access private member directly (will raise an error)
+# print(emp.__salary)  # AttributeError
+
+emp.set_salary(6000)
+print(emp.get_salary())  # Updated salary
+
