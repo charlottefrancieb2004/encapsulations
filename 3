@@ -1,13 +1,26 @@
-class Employee:
-    def __init__(self):
-        self.__salary = 0
-        
-    def set_salary(self, salary):
-        self.__salary = salary
-        
-    def get_salary(self):
-        return self.__salary
+class Student:
+    def __init__(self, name, grade):
+        self.name = name  # Public Member
+        self._grade = grade  # Protected Member
 
-e = Employee()
-e.set_salary(50000)
-print(e.get_salary()) # this will print 50000
+    def get_grade(self):
+        """Public method to access protected grade."""
+        return self._grade
+
+    def set_grade(self, new_grade):
+        """Public method to update grade."""
+        if 0 <= new_grade <= 100:
+            self._grade = new_grade
+        else:
+            print("Invalid grade! Must be between 0 and 100.")
+
+# Execution
+student = Student("John", 85)
+print(student.name)
+print(f"Grade: {student.get_grade()}")
+
+student.set_grade(90)
+print(f"Updated Grade: {student.get_grade()}")
+
+# Accessing protected member directly (Not recommended but possible)
+print(f"Directly Accessed Grade: {student._grade}")
