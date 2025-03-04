@@ -1,16 +1,29 @@
-class Person:
-    def __init__(self, name):
-        self.__name = name
-    
-    @property
-    def name(self):
-        return self.__name
-    
-    @name.setter
-    def name(self, name):
-        self.__name = name
+class Car:
+    def __init__(self, brand):
+        self.brand = brand  # Public Member
+        self.__speed = 0  # Private Member
 
-p = Person("Charlotte")
-print(p.name) # this will print John
-p.name = "balot"
-print(p.name) # this will print Mike
+    def accelerate(self):
+        """Public method to increase speed."""
+        self.__speed += 10
+        print(f"Accelerating... Speed is now {self.__speed} km/h")
+
+    def brake(self):
+        """Public method to decrease speed."""
+        if self.__speed >= 10:
+            self.__speed -= 10
+        print(f"Braking... Speed is now {self.__speed} km/h")
+
+    def get_speed(self):
+        """Public method to check speed."""
+        return self.__speed
+
+# Execution
+car = Car("Tesla")
+car.accelerate()
+car.accelerate()
+car.brake()
+print(f"Current Speed: {car.get_speed()} km/h")
+
+# Direct access (not allowed)
+# print(car.__speed)  # AttributeError
